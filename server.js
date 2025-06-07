@@ -17,12 +17,15 @@ const PORT = process.env.PORT || 4000;
 
 
 app.use(cookieParser());
-app.use(cors(
-    {
-        origin: '*', 
-        credentials: true,
-    }
-));
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://study-sphere-frontend-red.vercel.app"
+];
+app.use(cors({
+    origin: allowedOrigins,
+    credentials: true,
+}));
+
 app.use(fileUpload({
     useTempFiles : true,
     tempFileDir : "/tmp/"
